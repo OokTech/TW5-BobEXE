@@ -1,0 +1,40 @@
+{
+  "name": "bobexe",
+  "version": "1.0.0",
+  "description": "A single executable version of TiddlyWiki that uses Bob",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TiddlyWiki",
+    "MultiUser"
+  ],
+  "author": "inmysocks",
+  "license": "BSD-3-Clause",
+  "pkg": {
+    "scripts": [
+      "core/modules/*.js",
+      "core/modules/**/*.js",
+      "boot/*.js",
+      "plugins/OokTech/Bob/*.js"
+    ],
+    "assets": [
+      "TiddlyWiki5/editions/**",
+      "TiddlyWiki5/editions/.*",
+      "TiddlyWiki5/editions/Bob",
+      "TiddlyWiki5/editions/Bob/.*",
+      "TiddlyWiki5/editions/Bob/**",
+      "TiddlyWiki5/editions/Bob/**/.*",
+      "TiddlyWiki5/languages",
+      "TiddlyWiki5/licenses",
+      "TiddlyWiki5/plugins",
+      "TiddlyWiki5/themes",
+      "TiddlyWiki5/boot",
+      "TiddlyWiki5/core"
+    ]
+  },
+  "dependencies": {
+    "openurl": "^1.1.1"
+  }
+}
