@@ -41,6 +41,20 @@ if (process.env["TIDDLYWIKI_PLUGIN_PATH"] !== undefined && process.env["TIDDLYWI
   process.env["TIDDLYWIKI_PLUGIN_PATH"] = resolvedpluginspath;
 }
 
+var resolvedthemespath = path.resolve(__dirname, './themes');
+if (process.env["TIDDLYWIKI_THEME_PATH"] !== undefined && process.env["TIDDLYWIKI_THEME_PATH"] !== '') {
+  process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + resolvedthemespath;
+} else {
+  process.env["TIDDLYWIKI_THEME_PATH"] = resolvedthemespath;
+}
+
+var resolvededitionspath = path.resolve(__dirname, './editions')
+if (process.env["TIDDLYWIKI_EDITION_PATH"] !== undefined && process.env["TIDDLYWIKI_EDITION_PATH"] !== '') {
+  process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + resolvededitionspath;
+} else {
+  process.env["TIDDLYWIKI_EDITION_PATH"] = resolvededitionspath;
+}
+
 var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
 
 // Pass the command line arguments to the boot kernel

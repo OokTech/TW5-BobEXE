@@ -30,7 +30,7 @@ The default tiddler has some additional instructions.
 ## How to use this repo
 
 - Clone the repo
-- Initialise the sub-modules
+- Initialise/clone the sub-modules
 - Install npm modules.
 - Install the node pkg module
 - Run `buildExecutables.sh`
@@ -39,11 +39,26 @@ The default tiddler has some additional instructions.
 
 Folders:
 
-- `Bob/` the repo for the Bob plugin
-- `TiddlyWiki5/` the repo for TiddlyWiki
-- `editions/` just holds the index wiki edition used as the root wiki.
+- `plugins/` the repo for any plugins to be packaed with the executables. By default just the Bob plugin
+  - `plugins/OokTech/Bob` - the submodule for the Bob plugin
+- `editions/` just holds the index wiki edition used as the root wiki. By default just the edition for the IndexWiki
+- `themes/` hold any themes to be packaged with the executables. By default empty
+- `TiddlyWiki5/` the repo for TiddlyWiki as a submodule
 - `buildExecutables.sh` the script that builds the executables
+
+Any plugins, themes or editions added to the appropriate folders listed above
+will be available to all wikis served. You still need to list the plugins in
+the tiddlywiki.info file as usual, but you don't have to worry about setting
+environment variables or anything like that if they are in the executable.
 
 ## To get the repo at the correct version
 
+```
+git clone --branch <<TagName>> <<RepoURI>> --depth 1
+```
+
+Example:
+
+```
 git clone --branch v5.1.17 https://github.com/Jermolene/TiddlyWiki5.git --depth 1
+```
