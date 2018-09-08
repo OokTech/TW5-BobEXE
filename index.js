@@ -34,9 +34,12 @@ if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   specialCopy(source, destination)
 }
 
-/*
-This is invoked as a shell script by NPM when the `tiddlywiki` command is typed
-*/
+var resolvedpluginspath = path.resolve(__dirname, './plugins');
+if (process.env["TIDDLYWIKI_PLUGIN_PATH"] !== undefined && process.env["TIDDLYWIKI_PLUGIN_PATH"] !== '') {
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + resolvedpluginspath;
+} else {
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = resolvedpluginspath;
+}
 
 var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
 

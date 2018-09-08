@@ -20,12 +20,16 @@
       "plugins/OokTech/Bob/*.js"
     ],
     "assets": [
+      "editions/Bob",
+      "editions/Bob/.*",
+      "editions/Bob/**",
+      "editions/Bob/**/.*",
+      "plugins/OokTech/Bob",
+      "plugins/OokTech/Bob/.*",
+      "plugins/OokTech/Bob/**",
+      "plugins/OokTech/Bob/**/.*",
       "TiddlyWiki5/editions/**",
       "TiddlyWiki5/editions/.*",
-      "TiddlyWiki5/editions/Bob",
-      "TiddlyWiki5/editions/Bob/.*",
-      "TiddlyWiki5/editions/Bob/**",
-      "TiddlyWiki5/editions/Bob/**/.*",
       "TiddlyWiki5/languages",
       "TiddlyWiki5/licenses",
       "TiddlyWiki5/plugins",
@@ -36,5 +40,8 @@
   },
   "dependencies": {
     "openurl": "^1.1.1"
+  },
+  "bin": {
+    "tiddlywiki": "./index.js"
   }
 }
