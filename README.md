@@ -16,7 +16,7 @@ features of Bob.
 Download the executable for your system and copy it to where you want your wiki
 to be. And then run it. (On osx or linux you may have to make it executable)
 
-The executables are listed here: https://github.com/OokTech/TW5-SingleExecutable/releases
+The executables are listed here: https://github.com/OokTech/TW5-BobEXE/releases
 
 When you run the executable it will create a wiki folder for you, start the
 wiki server and then open up the wiki in your default browser.
