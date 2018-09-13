@@ -1,7 +1,8 @@
 {
 	"description": "Bob index edition",
 	"plugins": [
-    "OokTech/Bob"
+    "OokTech/Bob",
+    "OokTech/TWederBob"
 	],
 	"themes": [
 		"tiddlywiki/vanilla",

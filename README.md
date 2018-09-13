@@ -41,6 +41,7 @@ Folders:
 
 - `plugins/` the repo for any plugins to be packaed with the executables. By default just the Bob plugin
   - `plugins/OokTech/Bob` - the submodule for the Bob plugin
+  - `plugins/OokTech/TWederBob` - the submodule for the TWederBob plugin
 - `editions/` just holds the index wiki edition used as the root wiki. By default just the edition for the IndexWiki
 - `themes/` hold any themes to be packaged with the executables. By default empty
 - `TiddlyWiki5/` the repo for TiddlyWiki as a submodule
