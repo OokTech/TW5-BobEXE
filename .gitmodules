@@ -1,0 +1,6 @@
+[submodule "plugins/OokTech/Bob"]
+	path = plugins/OokTech/Bob
+	url = https://github.com/OokTech/TW5-Bob.git
+[submodule "plugins/OokTech/TWederBob"]
+	path = plugins/OokTech/TWederBob
+	url = https://github.com/OokTech/TW5-TWederBob.git
