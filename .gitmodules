@@ -4,3 +4,6 @@
 [submodule "plugins/OokTech/TWederBob"]
 	path = plugins/OokTech/TWederBob
 	url = https://github.com/OokTech/TW5-TWederBob.git
+[submodule "TiddlyWiki5"]
+	path = TiddlyWiki5
+	url = https://github.com/Jermolene/TiddlyWiki5.git
