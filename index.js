@@ -64,9 +64,19 @@ $tw.boot.argv = [path.join(basePath, "./IndexWiki"), "--wsserver"];
 // Boot the TW5 app
 $tw.boot.boot();
 
-// This opens the IndexWiki in the default browser
-openBrowser();
+// When running headless the browser doesn't exist and this will crash, so we
+// put it in a try block to make that simpler.
+try {
+  // This opens the IndexWiki in the default browser
+  openBrowser();
+} catch (e) {
+  console.log('Error opening browser:')
+  console.log(e)
+}
 
+// Because parts of node are asynchronous this function may run before the
+// http(s) server is started. This checks to see if it exists before trying to
+// open the browser.
 function openBrowser() {
   if (!$tw.settings.suppressBrowser) {
     setTimeout(function () {
