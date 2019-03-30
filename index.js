@@ -34,25 +34,34 @@ if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   specialCopy(source, destination)
 }
 
+if (!fs.existsSync(path.join(basePath, './Plugins'))) {
+  fs.mkdirSync(path.join(basePath, './Plugins'));
+  fs.mkdirSync(path.join(basePath, './Editions'));
+  fs.mkdirSync(path.join(basePath, './Themes'));
+}
+
 var resolvedpluginspath = path.resolve(__dirname, './plugins');
+var externalpluginspath = path.resolve(basePath, './Plugins');
 if (process.env["TIDDLYWIKI_PLUGIN_PATH"] !== undefined && process.env["TIDDLYWIKI_PLUGIN_PATH"] !== '') {
-  process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + resolvedpluginspath;
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + resolvedpluginspath + path.delimiter + externalpluginspath;
 } else {
-  process.env["TIDDLYWIKI_PLUGIN_PATH"] = resolvedpluginspath;
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = resolvedpluginspath + path.delimiter + externalpluginspath;
 }
 
 var resolvedthemespath = path.resolve(__dirname, './themes');
+var externalthemespath = path.resolve(basePath, './Themes');
 if (process.env["TIDDLYWIKI_THEME_PATH"] !== undefined && process.env["TIDDLYWIKI_THEME_PATH"] !== '') {
-  process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + resolvedthemespath;
+  process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + resolvedthemespath + path.delimiter + externalthemespath;
 } else {
-  process.env["TIDDLYWIKI_THEME_PATH"] = resolvedthemespath;
+  process.env["TIDDLYWIKI_THEME_PATH"] = resolvedthemespath + path.delimiter + externalthemespath;
 }
 
 var resolvededitionspath = path.resolve(__dirname, './editions')
+var externaleditionsspath = path.resolve(basePath, './Editions');
 if (process.env["TIDDLYWIKI_EDITION_PATH"] !== undefined && process.env["TIDDLYWIKI_EDITION_PATH"] !== '') {
-  process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + resolvededitionspath;
+  process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + resolvededitionspath + path.delimiter + externaleditionsspath;
 } else {
-  process.env["TIDDLYWIKI_EDITION_PATH"] = resolvededitionspath;
+  process.env["TIDDLYWIKI_EDITION_PATH"] = resolvededitionspath + path.delimiter + externaleditionsspath;
 }
 
 var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
