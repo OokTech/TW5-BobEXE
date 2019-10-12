@@ -1,6 +1,6 @@
 {
   "name": "bobexe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A single executable version of TiddlyWiki that uses Bob",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,9 @@
       "plugins/.*",
       "plugins/**",
       "plugins/**/.*",
+      "themes",
+      "themes/.*",
+      "themes/**/.*",
       "TiddlyWiki5/editions/**",
       "TiddlyWiki5/editions/.*",
       "TiddlyWiki5/languages",

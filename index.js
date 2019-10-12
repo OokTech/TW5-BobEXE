@@ -90,7 +90,11 @@ function openBrowser() {
   if (!$tw.settings.suppressBrowser) {
     setTimeout(function () {
       if ($tw.httpServerPort) {
-        require("openurl").open("http://127.0.0.1:" + $tw.httpServerPort);
+        if ($tw.settings['ws-server'].host === '127.0.0.1' || $tw.settings['ws-server'].host === '0.0.0.0') {
+          require("openurl").open("http://127.0.0.1:" + $tw.httpServerPort);
+        } else {
+          require('openurl').open('http://' + $tw.settings['ws-server'].host + ':' + $tw.httpServerPort)
+        }
       } else {
         openBrowser();
       }

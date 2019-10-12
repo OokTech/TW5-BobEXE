@@ -7,3 +7,9 @@
 [submodule "TiddlyWiki5"]
 	path = TiddlyWiki5
 	url = https://github.com/Jermolene/TiddlyWiki5.git
+[submodule "plugins/OokTech/ServerImages"]
+	path = plugins/OokTech/ServerImages
+	url = git@github.com:OokTech/TW5-ServerImages.git
+[submodule "plugins/OokTech/DownloadBinary"]
+	path = plugins/OokTech/DownloadBinary
+	url = git@github.com:OokTech/TW5-DownloadBinary.git
