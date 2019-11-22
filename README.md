@@ -25,6 +25,24 @@ After that it is the same as a normal tiddlywiki running Bob.
 
 The default tiddler has some additional instructions.
 
+## Advanced usage
+
+If you start the executable from the command line than there are two possible
+command line arguments. Both can be absolute path or relative to the location
+of the executable.
+
+- The first argument is the location of the index wiki.
+- The second argument is the base path for everything else.
+
+Example:
+
+```
+BobLinux ./index/wiki/folder ~/base/path
+```
+
+The base path is the folder where the `Wikis`, `Plugins`, `Themes` and
+`Languages` folders are placed by default.
+
 # Below here is only developer stuff, you should ignore it.
 
 ## How to use this repo
