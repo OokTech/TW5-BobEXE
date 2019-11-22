@@ -43,25 +43,25 @@ if (!fs.existsSync(path.join(basePath, './Plugins'))) {
 var resolvedpluginspath = path.resolve(__dirname, './plugins');
 var externalpluginspath = path.resolve(basePath, './Plugins');
 if (process.env["TIDDLYWIKI_PLUGIN_PATH"] !== undefined && process.env["TIDDLYWIKI_PLUGIN_PATH"] !== '') {
-  process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + resolvedpluginspath + path.delimiter + externalpluginspath;
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + externalpluginspath + path.delimiter + resolvedpluginspath;
 } else {
-  process.env["TIDDLYWIKI_PLUGIN_PATH"] = resolvedpluginspath + path.delimiter + externalpluginspath;
+  process.env["TIDDLYWIKI_PLUGIN_PATH"] = externalpluginspath + path.delimiter + resolvedpluginspath;
 }
 
 var resolvedthemespath = path.resolve(__dirname, './themes');
 var externalthemespath = path.resolve(basePath, './Themes');
 if (process.env["TIDDLYWIKI_THEME_PATH"] !== undefined && process.env["TIDDLYWIKI_THEME_PATH"] !== '') {
-  process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + resolvedthemespath + path.delimiter + externalthemespath;
+  process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + externalthemespath + path.delimiter + resolvedthemespath;
 } else {
-  process.env["TIDDLYWIKI_THEME_PATH"] = resolvedthemespath + path.delimiter + externalthemespath;
+  process.env["TIDDLYWIKI_THEME_PATH"] = externalthemespath + path.delimiter + resolvedthemespath;
 }
 
 var resolvededitionspath = path.resolve(__dirname, './editions')
 var externaleditionsspath = path.resolve(basePath, './Editions');
 if (process.env["TIDDLYWIKI_EDITION_PATH"] !== undefined && process.env["TIDDLYWIKI_EDITION_PATH"] !== '') {
-  process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + resolvededitionspath + path.delimiter + externaleditionsspath;
+  process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + externaleditionsspath + path.delimiter + resolvededitionspath;
 } else {
-  process.env["TIDDLYWIKI_EDITION_PATH"] = resolvededitionspath + path.delimiter + externaleditionsspath;
+  process.env["TIDDLYWIKI_EDITION_PATH"] =  externaleditionsspath + path.delimiter + resolvededitionspath;
 }
 
 var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
@@ -86,18 +86,28 @@ try {
 // Because parts of node are asynchronous this function may run before the
 // http(s) server is started. This checks to see if it exists before trying to
 // open the browser.
+let numTries = 0
 function openBrowser() {
   if (!$tw.settings.suppressBrowser) {
     setTimeout(function () {
-      if ($tw.httpServerPort) {
-        if ($tw.settings['ws-server'].host === '127.0.0.1' || $tw.settings['ws-server'].host === '0.0.0.0') {
-          require("openurl").open("http://127.0.0.1:" + $tw.httpServerPort);
+      if ($tw.httpServerPort && numTries < 100) {
+        if ($tw.settings['ws-server'].host === '127.0.0.1' || $tw.settings['ws-server'].host === '0.0.0.0' || typeof $tw.settings['ws-server'].host === 'undefined') {
+          require("openurl").open("http://127.0.0.1:" + $tw.httpServerPort, callback);
         } else {
-          require('openurl').open('http://' + $tw.settings['ws-server'].host + ':' + $tw.httpServerPort)
+          require('openurl').open('http://' + $tw.settings['ws-server'].host + ':' + $tw.httpServerPort, callback)
         }
       } else {
+        numTries = numTries + 1;
         openBrowser();
       }
     }, 100);
+  }
+}
+
+function callback(err) {
+  if (err) {
+    console.log('Error opening browser:', err)
+  } else {
+
   }
 }
