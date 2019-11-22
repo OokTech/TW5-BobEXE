@@ -7,7 +7,7 @@ const path = require('path');
 //var basePath = process.pkg?path.dirname(process.argv[0]):process.cwd();
 
 const rootWikiPath = (process.argv.length > 2)?process.argv[2]:'./IndexWiki';
-const basePath = (process.argv.length > 3)?path.resolve(process.argv[3]):(process.pkg?path.dirname(process.argv[0]):process.cwd();)
+const basePath = (process.argv.length > 3)?path.resolve(process.argv[3]):(process.pkg?path.dirname(process.argv[0]):process.cwd());
 
 if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   // Recursively copy files from the virtual file system in the packaged
