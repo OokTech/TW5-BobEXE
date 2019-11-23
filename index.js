@@ -4,10 +4,43 @@
 const fs = require('fs');
 const path = require('path');
 
-//var basePath = process.pkg?path.dirname(process.argv[0]):process.cwd();
+let rootWikiPath = './IndexWiki'
+let basePath = process.pkg?path.dirname(process.argv[0]):process.cwd()
+if (process.argv.length > 2) {
+  process.argv.slice(2).forEach(function(arg, index) {
+    if (!arg.startsWith('--')) {
+      if (index === 0) {
+        rootWikiPath = arg
+      } else if (index === 1) {
+        basePath = arg
+      }
+    } else if (arg.startsWith('--basePath=')) {
+      basePath = arg.split('=')[1]
+    } else if (arg.startsWith('--indexPath=')) {
+      rootWikiPath = arg.split('=')[1]
+    }
+  })
+}
 
-const rootWikiPath = (process.argv.length > 2)?process.argv[2]:'./IndexWiki';
-const basePath = (process.argv.length > 3)?path.resolve(process.argv[3]):(process.pkg?path.dirname(process.argv[0]):process.cwd());
+basePath = path.resolve(basePath)
+rootWikiPath = path.resolve(rootWikiPath)
+
+//const rootWikiPath = (process.argv.length > 2)?path.resolve(process.argv[2]):'./IndexWiki';
+//const basePath = (process.argv.length > 3)?path.resolve(process.argv[3]):(process.pkg?path.dirname(process.argv[0]):process.cwd());
+
+/*
+  mkdirSync doesn't always work with the recursive flag, so we fake it here.
+*/
+function annoyingMkDirSync(dirPath) {
+  dirPath = path.resolve(dirPath);
+  const pathPieces = dirPath.split(path.sep);
+  for (i = 0;i < pathPieces.length;i++) {
+    const currPath = pathPieces.slice(0,i+2).join(path.sep);
+    if (!fs.existsSync(currPath)) {
+      fs.mkdirSync(currPath);
+    }
+  }
+}
 
 if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   // Recursively copy files from the virtual file system in the packaged
@@ -15,7 +48,7 @@ if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   // NOTE: None of the fs copying functions work on the virtual file system.
   // That is why I made this function.
   function specialCopy (source, destination) {
-    fs.mkdirSync(destination);
+    annoyingMkDirSync(destination);
     const currentDir = fs.readdirSync(source)
     currentDir.forEach(function (item) {
       if (fs.statSync(path.join(source, item)).isFile()) {
@@ -38,9 +71,9 @@ if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
 }
 
 if (!fs.existsSync(path.join(basePath, './Plugins'))) {
-  fs.mkdirSync(path.join(basePath, './Plugins'));
-  fs.mkdirSync(path.join(basePath, './Editions'));
-  fs.mkdirSync(path.join(basePath, './Themes'));
+  annoyingMkDirSync(path.join(basePath, './Plugins'));
+  annoyingMkDirSync(path.join(basePath, './Editions'));
+  annoyingMkDirSync(path.join(basePath, './Themes'));
 }
 
 var resolvedpluginspath = path.resolve(__dirname, './plugins');
@@ -71,10 +104,13 @@ var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
 
 // Pass the command line arguments to the boot kernel
 
-$tw.boot.argv = [path.join(basePath, wikiPath), "--wsserver"];
+$tw.boot.argv = [path.resolve(basePath, rootWikiPath), "--wsserver"];
 
 // Boot the TW5 app
 $tw.boot.boot();
+
+// Set the base path in case it was passed as a command line argument.
+$tw.settings.wikiPathBase = basePath;
 
 // When running headless the browser doesn't exist and this will crash, so we
 // put it in a try block to make that simpler.
