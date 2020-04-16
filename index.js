@@ -23,10 +23,7 @@ if (process.argv.length > 2) {
 }
 
 basePath = path.resolve(basePath)
-rootWikiPath = path.resolve(rootWikiPath)
-
-//const rootWikiPath = (process.argv.length > 2)?path.resolve(process.argv[2]):'./IndexWiki';
-//const basePath = (process.argv.length > 3)?path.resolve(process.argv[3]):(process.pkg?path.dirname(process.argv[0]):process.cwd());
+rootWikiPath = path.resolve(basePath, rootWikiPath)
 
 /*
   mkdirSync doesn't always work with the recursive flag, so we fake it here.
@@ -42,7 +39,7 @@ function annoyingMkDirSync(dirPath) {
   }
 }
 
-if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
+if (!fs.existsSync(path.join(rootWikiPath))) {
   // Recursively copy files from the virtual file system in the packaged
   // executable into the real file system outside it.
   // NOTE: None of the fs copying functions work on the virtual file system.
@@ -65,7 +62,7 @@ if (!fs.existsSync(path.join(basePath, 'IndexWiki'))) {
   }
 
   // If we don't have an index wiki already in this location, make one.
-  const destination = path.join(basePath, 'IndexWiki');
+  const destination = rootWikiPath;
   const source = path.join(__dirname, 'editions/Bob')
   specialCopy(source, destination)
 }

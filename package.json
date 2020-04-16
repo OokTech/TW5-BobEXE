@@ -1,6 +1,6 @@
 {
   "name": "bobexe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A single executable version of TiddlyWiki that uses Bob",
   "main": "index.js",
   "scripts": {
@@ -17,9 +17,11 @@
       "core/modules/*.js",
       "core/modules/**/*.js",
       "boot/*.js",
-      "plugins/OokTech/Bob/*.js"
+      "plugins/OokTech/Bob/*.js",
+      "*.js"
     ],
     "assets": [
+      "*.js",
       "editions",
       "editions/.*",
       "editions/**",
