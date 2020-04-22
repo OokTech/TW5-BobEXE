@@ -4,34 +4,39 @@ console.log('starting with windows x64')
 compile({
   input: './index.js',
   output: 'BobWin',
-  targets: 'windows-x64'
+  targets: 'windows-x64',
+  resources: ['./plugins/**/*', './TiddlyWiki5/**/*', './themes/**/*', './editions/**/*']
 }).then(() => {
   console.log('now windows x32')
   return compile({
     input: './index.js',
     output: 'BobWin32',
-    targets: 'windows-x32'
+    targets: 'windows-x32',
+    resources: ['./plugins/**/*', './TiddlyWiki5/**/*', './themes/**/*', './editions/**/*']
   })
 }).then(() => {
   console.log('now osx x64')
   return compile({
     input: './index.js',
     output: 'BobOSX.command',
-    targets: 'mac-x64'
+    targets: 'mac-x64',
+    resources: ['./plugins/**/*', './TiddlyWiki5/**/*', './themes/**/*', './editions/**/*']
   })
 }).then(() => {
   console.log('now linux x64')
   return compile({
     input: './index.js',
     output: 'BobLinux',
-    targets: 'linux-x64'
+    targets: 'linux-x64',
+    resources: ['./plugins/**/*', './TiddlyWiki5/**/*', './themes/**/*', './editions/**/*']
   })
 }).then(() => {
   console.log('now linux x32')
   return compile({
     input: './index.js',
     output: 'BobLinux32',
-    targets: 'linux-x32'
+    targets: 'linux-x32',
+    resources: ['./plugins/**/*', './TiddlyWiki5/**/*', './themes/**/*', './editions/**/*']
   })
 }).then(() => {
   console.log('done')
