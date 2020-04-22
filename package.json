@@ -12,38 +12,8 @@
   ],
   "author": "inmysocks",
   "license": "BSD-3-Clause",
-  "pkg": {
-    "scripts": [
-      "core/modules/*.js",
-      "core/modules/**/*.js",
-      "boot/*.js",
-      "plugins/OokTech/Bob/*.js",
-      "*.js"
-    ],
-    "assets": [
-      "*.js",
-      "editions",
-      "editions/.*",
-      "editions/**",
-      "editions/**/.*",
-      "plugins",
-      "plugins/.*",
-      "plugins/**",
-      "plugins/**/.*",
-      "themes",
-      "themes/.*",
-      "themes/**/.*",
-      "TiddlyWiki5/editions/**",
-      "TiddlyWiki5/editions/.*",
-      "TiddlyWiki5/languages",
-      "TiddlyWiki5/licenses",
-      "TiddlyWiki5/plugins",
-      "TiddlyWiki5/themes",
-      "TiddlyWiki5/boot",
-      "TiddlyWiki5/core"
-    ]
-  },
   "dependencies": {
+    "nexe": "^3.3.2",
     "openurl": "^1.1.1"
   },
   "bin": {
