@@ -1,6 +1,6 @@
 {
   "name": "bobexe",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A single executable version of TiddlyWiki that uses Bob",
   "main": "index.js",
   "scripts": {

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 let rootWikiPath = './IndexWiki'
-let basePath = process.cwd()
+let basePath = path.dirname(process.argv[0])
 if (process.argv.length > 2) {
   process.argv.slice(2).forEach(function(arg, index) {
     if (!arg.startsWith('--')) {

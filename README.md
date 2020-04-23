@@ -67,23 +67,24 @@ The index path is the location of the wiki to use as the root wiki.
 
 ## How to use this repo
 
-- Clone the repo
-- Initialise/clone the sub-modules
-- Install npm modules.
-- Install the node pkg module
-- Run `buildExecutables.sh`
+- Clone the repo with submodules: `git clone --recurse-submodules https://github.com/OokTech/TW5-BobEXE.git`
+- Install npm modules, `npm install`
+
+to build the executables run:
+
+- run `node ./nexebuild.js`
 
 ## Repo Structure
 
 Folders:
 
-- `plugins/` the repo for any plugins to be packaed with the executables. By default just the Bob plugin
+- `plugins/` the repo for any plugins to be packaged with the executables. By default just the Bob plugin
   - `plugins/OokTech/Bob` - the submodule for the Bob plugin
   - `plugins/OokTech/TWederBob` - the submodule for the TWederBob plugin
 - `editions/` just holds the index wiki edition used as the root wiki. By default just the edition for the IndexWiki
 - `themes/` hold any themes to be packaged with the executables. By default empty
 - `TiddlyWiki5/` the repo for TiddlyWiki as a submodule
-- `buildExecutables.sh` the script that builds the executables
+- `nexebuild.js` the script that builds the executables
 
 Any plugins, themes or editions added to the appropriate folders listed above
 will be available to all wikis served. You still need to list the plugins in
