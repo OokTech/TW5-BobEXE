@@ -46,6 +46,7 @@ Folders:
 - `themes/` hold any themes to be packaged with the executables. By default empty
 - `TiddlyWiki5/` the repo for TiddlyWiki as a submodule
 - `buildExecutables.sh` the script that builds the executables
+- `Docker` dockerfile for using BobLinux inside a docker container
 
 Any plugins, themes or editions added to the appropriate folders listed above
 will be available to all wikis served. You still need to list the plugins in
