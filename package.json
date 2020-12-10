@@ -1,6 +1,6 @@
 {
   "name": "bobexe",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A single executable version of TiddlyWiki that uses Bob",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "inmysocks",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "nexe": "^3.3.2",
+    "nexe": "^3.3.7",
     "openurl": "^1.1.1"
   },
   "bin": {

@@ -73,24 +73,24 @@ if (!fs.existsSync(path.join(basePath, './Plugins'))) {
   annoyingMkDirSync(path.join(basePath, './Themes'));
 }
 
-var resolvedpluginspath = path.resolve(__dirname, './plugins');
-var externalpluginspath = path.resolve(basePath, './Plugins');
+const resolvedpluginspath = path.resolve(__dirname, './plugins');
+const externalpluginspath = path.resolve(basePath, './Plugins');
 if (process.env["TIDDLYWIKI_PLUGIN_PATH"] !== undefined && process.env["TIDDLYWIKI_PLUGIN_PATH"] !== '') {
   process.env["TIDDLYWIKI_PLUGIN_PATH"] = process.env["TIDDLYWIKI_PLUGIN_PATH"] + path.delimiter + externalpluginspath + path.delimiter + resolvedpluginspath;
 } else {
   process.env["TIDDLYWIKI_PLUGIN_PATH"] = externalpluginspath + path.delimiter + resolvedpluginspath;
 }
 
-var resolvedthemespath = path.resolve(__dirname, './themes');
-var externalthemespath = path.resolve(basePath, './Themes');
+const resolvedthemespath = path.resolve(__dirname, './themes');
+const externalthemespath = path.resolve(basePath, './Themes');
 if (process.env["TIDDLYWIKI_THEME_PATH"] !== undefined && process.env["TIDDLYWIKI_THEME_PATH"] !== '') {
   process.env["TIDDLYWIKI_THEME_PATH"] = process.env["TIDDLYWIKI_THEME_PATH"] + path.delimiter + externalthemespath + path.delimiter + resolvedthemespath;
 } else {
   process.env["TIDDLYWIKI_THEME_PATH"] = externalthemespath + path.delimiter + resolvedthemespath;
 }
 
-var resolvededitionspath = path.resolve(__dirname, './editions')
-var externaleditionsspath = path.resolve(basePath, './Editions');
+const resolvededitionspath = path.resolve(__dirname, './editions')
+const externaleditionsspath = path.resolve(basePath, './Editions');
 if (process.env["TIDDLYWIKI_EDITION_PATH"] !== undefined && process.env["TIDDLYWIKI_EDITION_PATH"] !== '') {
   process.env["TIDDLYWIKI_EDITION_PATH"] = process.env["TIDDLYWIKI_EDITION_PATH"] + path.delimiter + externaleditionsspath + path.delimiter + resolvededitionspath;
 } else {
@@ -98,17 +98,16 @@ if (process.env["TIDDLYWIKI_EDITION_PATH"] !== undefined && process.env["TIDDLYW
 }
 
 var $tw = require("./TiddlyWiki5/boot/boot.js").TiddlyWiki();
-
 // Pass the command line arguments to the boot kernel
-
 $tw.boot.argv = [path.resolve(basePath, rootWikiPath), "--wsserver"];
-
+// Load the settings
+const rawSettings = fs.readFileSync(path.join($tw.boot.argv[0],'settings','settings.json'));
+// Try to parse the JSON after loading the file.
+$tw.settings = JSON.parse(rawSettings)
 // Boot the TW5 app
 $tw.boot.boot();
-
 // Set the base path in case it was passed as a command line argument.
 $tw.settings.wikiPathBase = basePath;
-
 // When running headless the browser doesn't exist and this will crash, so we
 // put it in a try block to make that simpler.
 try {
