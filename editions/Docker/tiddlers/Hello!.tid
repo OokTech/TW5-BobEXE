@@ -1,0 +1,34 @@
+title: Hello!
+
+!Welcome to the Bob ~TiddlyWiki.
+
+!! Connecting other computers to the wiki
+
+''BIG NOTE OF DOOM or what is the local network?:'' The local network is anyone
+using the same router as you. This means anyone on the same wifi network or
+using a wired connection on the same router. So when you are at starbucks or a
+library on the wifi anyone else who is on that wifi is on the local network.
+
+By default the wiki is only available on `localhost` on the computer you are
+running the node process on.
+
+If you want to make it available to other computers on the local network you
+have to change the settings in the $:/ControlPanel under the `Bob Settings`
+tab.
+
+There are a few tabs available in the `Bob Settings`:
+
+* The `Manage Wikis` tab lets you create new wikis and manage existing wikis.
+* The `This Wiki` tab lets you change the plugins and themes that are available and active in the current wiki.
+* The `Server` tab lets you do things that affect the wiki server, like making the wikis available on the local network and setting up a static file server to access local media files.
+* The `Federation` tab has some very experimental things, they probably won't work well.
+* The `Bob Documentation` tab has further documentation about Bob.
+* The `About OokTech/Support Documentation` tab has information about OokTech and how to to support the further development of Bob and the related plugins.
+
+More Bob documentation [[$:/plugins/OokTech/Bob/readme]]
+
+Things you may want to do:
+
+* Enable the [[media file server|$:/plugins/OokTech/Bob/FileServerSetup]]
+* Enable the [[ServerImages plugin|$:/plugins/OokTech/Bob/SelectPlugins]] (requires the media server to be enabled)
+* Make the served wikis [[available on the local network|$:/plugins/OokTech/Bob/ServerTab]]

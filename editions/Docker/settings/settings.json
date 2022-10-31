@@ -1,0 +1,7 @@
+{
+  "wikis": {},
+  "ws-server": {
+    "host": "0.0.0.0"
+  },
+  "suppressBrowser": true
+}

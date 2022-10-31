@@ -6,6 +6,7 @@ const path = require('path');
 
 let rootWikiPath = './IndexWiki'
 let basePath = path.dirname(process.argv[0])
+let docker = false;
 if (process.argv.length > 2) {
   process.argv.slice(2).forEach(function(arg, index) {
     if (!arg.startsWith('--')) {
@@ -18,6 +19,8 @@ if (process.argv.length > 2) {
       basePath = arg.split('=')[1]
     } else if (arg.startsWith('--indexPath=')) {
       rootWikiPath = arg.split('=')[1]
+    } else if (arg.startsWith('--docker')) {
+      docker = true;
     }
   })
 }
@@ -110,13 +113,14 @@ $tw.boot.boot();
 $tw.settings.wikiPathBase = basePath;
 // When running headless the browser doesn't exist and this will crash, so we
 // put it in a try block to make that simpler.
-/*
-try {
-  // This opens the IndexWiki in the default browser
-  openBrowser();
-} catch (e) {
-  console.log('Error opening browser:')
-  console.log(e)
+if(!docker) {
+  try {
+    // This opens the IndexWiki in the default browser
+    openBrowser();
+  } catch (e) {
+    console.log('Error opening browser:')
+    console.log(e)
+  }
 }
 
 // Because parts of node are asynchronous this function may run before the
@@ -147,4 +151,3 @@ function callback(err) {
 
   }
 }
-*/

@@ -6,21 +6,16 @@ git clone --depth=1 --branch v5.2.3 https://github.com/Jermolene/TiddlyWiki5.git
 git clone --depth=1 https://github.com/OokTech/TW5-Bob.git /BobEXE/plugins/OokTech/Bob && \
 git clone --depth=1 https://github.com/OokTech/TW5-TWederBob.git /BobEXE/plugins/OokTech/TwederBob
 
-RUN rm -rf /BobEXE/editions/Bob && \
-mv /BobEXE/editions/Docker /BobEXE/editions/Bob
-
 WORKDIR /BobEXE
 
 RUN npm install
 
-RUN node ./nexebuildAlpine.js
+RUN node ./nexebuild.js
 
-FROM alpine:latest
+VOLUME /dist
 
-COPY --from=build /BobEXE/BobAlpine /BobAlpine
+COPY CopyAll.sh /CopyAll.sh
 
-EXPOSE 8080
+WORKDIR /
 
-VOLUME /Bob
-
-CMD ["./BobAlpine", "--basePath=/Bob", "--docker"]
+CMD ["/bin/sh", "CopyAll.sh"]
