@@ -110,6 +110,7 @@ $tw.boot.boot();
 $tw.settings.wikiPathBase = basePath;
 // When running headless the browser doesn't exist and this will crash, so we
 // put it in a try block to make that simpler.
+/*
 try {
   // This opens the IndexWiki in the default browser
   openBrowser();
@@ -146,3 +147,4 @@ function callback(err) {
 
   }
 }
+*/

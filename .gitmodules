@@ -1,15 +1,3 @@
-[submodule "plugins/OokTech/Bob"]
-	path = plugins/OokTech/Bob
-	url = https://github.com/OokTech/TW5-Bob.git
-[submodule "plugins/OokTech/TWederBob"]
-	path = plugins/OokTech/TWederBob
-	url = https://github.com/OokTech/TW5-TWederBob.git
-[submodule "TiddlyWiki5"]
-	path = TiddlyWiki5
-	url = https://github.com/Jermolene/TiddlyWiki5.git
 [submodule "plugins/OokTech/ServerImages"]
 	path = plugins/OokTech/ServerImages
 	url = git@github.com:OokTech/TW5-ServerImages.git
-[submodule "plugins/OokTech/DownloadBinary"]
-	path = plugins/OokTech/DownloadBinary
-	url = git@github.com:OokTech/TW5-DownloadBinary.git

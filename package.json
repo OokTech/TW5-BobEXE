@@ -13,7 +13,7 @@
   "author": "inmysocks",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "nexe": "^3.3.7",
+    "nexe": "^4.0.0-beta.19",
     "openurl": "^1.1.1"
   },
   "bin": {
