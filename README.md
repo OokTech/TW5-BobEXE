@@ -65,7 +65,7 @@ The index path is the location of the wiki to use as the root wiki.
 
 # Building the executables using Docker
 
-There are two Dockerfiles in the repo, one is to build a container that runs Bob using an Alpine base so it is only about 70mb. This is probably the easiest way to deploy bob if you are in an environment with Docker. The other makes a image that builds the executables for the different supported operating systems, when you run the image in a container it copies the resulting executables into the `dist` volume.
+There are two Dockerfiles in the repo, one is to build a container that runs Bob using an Alpine base so it is only about 70mb. This is probably the easiest way to deploy bob if you are in an environment with Docker. The other makes a image that builds the executables for the different supported operating systems. See below for details.
 
 ## Running Bob Using Docker
 
@@ -96,21 +96,7 @@ If you use a bind mount instead of a named volume you have easy access to the co
 
 ## Building BobEXE Using Docker
 
-To build the executables use the docker file in the `BuildAll` folder. First build the image using
-
-```
-cd BuildAll
-docker build -t buildexecutables .
-```
-
-then once that is built run the container and it will copy the built executables into the `/dist` volume that you should mount somewhere on the host. Once the container has started and copied the files you should just stop it because it doesn't do anything else.
-
-```
-docker run --mount 'type=bind,src=/host/path,dst=/dist' buildexecutables
-docker container stop buildexecutables
-```
-
-then the executables should be in the `/host/path` folder on the host computer.
+To build the executables using Docker use the `DockerBuild.sh` script. For more information see the `README.md` file in the `BuildAll` folder.
 
 # Below here is only developer stuff, you should ignore it.
 

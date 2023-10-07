@@ -9,10 +9,13 @@ It has a volume called `dist` that you can connect to a folder on the host machi
 the quick version is in a terminal go into the `BuildAll` folder and then type this:
 
 ```
+cd BuildAll
 docker build -t bobbuild .
 mkdir dist
-docker run --mount type=bind,source="$(pwd)"/dist,target=/dist bobbuild
-docker container rm bobbuild
+docker run --name tempbobbuild --mount type=bind,source="$(pwd)"/dist,target=/dist bobbuild
+docker container rm tempbobbuild
+docker image rm bobbuild
+mv ./dist ../
 ```
 
 ## What it does
@@ -25,4 +28,4 @@ docker container rm bobbuild
 2. make a folder on the local machine called `dist` for the output
 3. run the container to build the executables
     - this also copies the executables into the local `dist` folder
-4. remove the container
+4. remove the temporary container
